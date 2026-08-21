@@ -144,7 +144,7 @@ footer{background:#111}
 @media(max-width:480px){.giving-icons{flex-direction:column}.contact-card .giving-icon{width:100%}}
 @media(prefers-reduced-motion:reduce){.contact-card .giving-icon{transition:none}.contact-card .giving-icon:hover{transform:none}}
 
-.staff-card{display:block;min-width:0;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer;perspective:1200px;aspect-ratio:4/6.15;transform:translateY(0) rotateX(0) rotateY(0);transform-origin:50% 65%;transition:transform .25s cubic-bezier(.2,.7,.2,1),filter .25s ease}
+.staff-card{display:block;min-width:0;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer;perspective:1200px;aspect-ratio:4/7.2;transform:translateY(0) rotateX(0) rotateY(0);transform-origin:50% 65%;transition:transform .25s cubic-bezier(.2,.7,.2,1),filter .25s ease}
 .staff-card:hover{transform:translateY(-5px) rotateX(1.5deg) rotateY(-1.5deg);filter:drop-shadow(10px 14px 16px #0000002c)}
 .staff-card:active{transform:translateY(-2px) rotateX(.75deg) rotateY(-.75deg)}
 .staff-card-inner{position:relative;display:block;width:100%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
@@ -153,7 +153,7 @@ footer{background:#111}
 .staff-front{background:var(--ink);border:0;padding:0;color:inherit;text-align:left;cursor:pointer}
 .staff-card.is-flipped .staff-front{pointer-events:none}
 .staff-front>img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;background:#222}
-.staff-copy{display:flex;flex-direction:column;flex:1;padding:1rem 0 0}
+.staff-copy{display:flex;flex-direction:column;flex:1;padding:1rem 0 .5rem}
 .staff-copy strong,.staff-back>strong{font:500 clamp(1.25rem,2vw,1.7rem) 'Libre Franklin'}
 .staff-copy small,.staff-back>small{font:400 .75rem/1.45 'DM Sans';color:#ffffffa8;text-transform:uppercase;letter-spacing:.08em;margin-top:.35rem}
 .staff-copy em{font:400 .73rem/1.45 'DM Sans';color:#ffffff80;font-style:normal;margin-top:.5rem}
