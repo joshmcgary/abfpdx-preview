@@ -4,15 +4,21 @@ import { registerSW } from 'virtual:pwa-register'
 import App from './App.jsx'
 import './styles.css'
 
-const updateSW = registerSW({
-  immediate: true,
-  onNeedRefresh() {
-    updateSW(true)
-  },
-  onRegisteredSW(_url, registration) {
-    registration?.update()
-  },
-})
+if (import.meta.env.PROD) {
+  const updateSW = registerSW({
+    immediate: true,
+    onNeedRefresh() {
+      updateSW(true)
+    },
+    onRegisteredSW(_url, registration) {
+      registration?.update()
+    },
+  })
+} else if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((registration) => registration.unregister())
+  })
+}
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode><App /></React.StrictMode>,
