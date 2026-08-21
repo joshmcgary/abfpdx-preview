@@ -48,20 +48,27 @@ footer{background:#111}
 .staff-sequence{display:grid;grid-template-columns:repeat(3,1fr);margin-top:4rem;border-top:1px solid #f4f0e755;border-bottom:1px solid #f4f0e755}
 .staff-sequence a{display:grid;gap:.75rem;padding:1.5rem;text-decoration:none;border-right:1px solid #f4f0e755;transition:background .2s ease,color .2s ease}
 .staff-sequence a:last-child{border-right:0}
-.staff-sequence a:hover,.staff-sequence a:focus-visible{background:var(--blue);color:var(--ink);outline:0}
+.staff-sequence a:hover,.staff-sequence a:focus-visible{outline:0}
+.staff-sequence a:nth-child(1):hover,.staff-sequence a:nth-child(1):focus-visible{background:var(--red);color:#fff}
+.staff-sequence a:nth-child(2):hover,.staff-sequence a:nth-child(2):focus-visible{background:var(--blue);color:var(--ink)}
+.staff-sequence a:nth-child(3):hover,.staff-sequence a:nth-child(3):focus-visible{background:var(--gold);color:var(--ink)}
 .staff-sequence span,.staff-sequence small{font:600 .65rem 'DM Sans';letter-spacing:.13em;text-transform:uppercase;color:#f4f0e590}
+.staff-sequence a:nth-child(1)>span{color:var(--red)}
+.staff-sequence a:nth-child(2)>span{color:var(--blue)}
+.staff-sequence a:nth-child(3)>span{color:var(--gold)}
 .staff-sequence strong{font:500 clamp(1.2rem,2vw,1.8rem) 'Libre Franklin'}
 .staff-sequence a:hover span,.staff-sequence a:hover small,.staff-sequence a:focus-visible span,.staff-sequence a:focus-visible small{color:#162c24b3}
+.staff-sequence a:nth-child(1):hover span,.staff-sequence a:nth-child(1):hover small,.staff-sequence a:nth-child(1):focus-visible span,.staff-sequence a:nth-child(1):focus-visible small{color:#fff}
 .staff-groups>section{scroll-margin-top:2rem}
-.staff-group-header{display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:1.5rem;padding:0 0 1.5rem;border-bottom:2px solid var(--blue)}
-.staff-group-header>span{align-self:start;color:var(--blue);font:700 .75rem 'DM Sans';letter-spacing:.16em}
+.staff-group-header{display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:1.5rem;padding:0 0 1.5rem;border-bottom:2px solid var(--red)}
+.staff-group-header>span{align-self:start;color:var(--red);font:700 .75rem 'DM Sans';letter-spacing:.16em}
 .staff-group-header h3{color:var(--cream);font:400 clamp(2.8rem,5vw,5.8rem)/.92 'Libre Franklin';letter-spacing:-.06em;text-transform:none;margin:0}
 .staff-groups .staff-group-header p{max-width:700px;margin:1rem 0 0;padding:0;border:0;color:#f4f0e5b5;font:400 clamp(.95rem,1.4vw,1.15rem)/1.55 'DM Sans';text-transform:none;letter-spacing:normal}
 .staff-group-header>small{font:600 .66rem 'DM Sans';letter-spacing:.12em;text-transform:uppercase;color:#f4f0e590;padding-bottom:.4rem}
-.staff-groups>section:nth-child(2) .staff-group-header{border-color:var(--gold)}
-.staff-groups>section:nth-child(2) .staff-group-header>span{color:var(--gold)}
-.staff-groups>section:nth-child(3) .staff-group-header{border-color:var(--red)}
-.staff-groups>section:nth-child(3) .staff-group-header>span{color:var(--red)}
+.staff-groups>section:nth-child(2) .staff-group-header{border-color:var(--blue)}
+.staff-groups>section:nth-child(2) .staff-group-header>span{color:var(--blue)}
+.staff-groups>section:nth-child(3) .staff-group-header{border-color:var(--gold)}
+.staff-groups>section:nth-child(3) .staff-group-header>span{color:var(--gold)}
 .staff-card{min-width:0}
 .staff-card img,.staff-placeholder{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;background:#222}
 .staff-card h4{font:500 clamp(1.25rem,2vw,1.7rem) 'Libre Franklin';margin:1rem 0 .35rem}
