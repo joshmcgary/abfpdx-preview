@@ -5,9 +5,9 @@ const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
 const Arrow = () => <span aria-hidden="true">↗</span>
 
 const staffGroupDetails = {
-  Pastors: { title: 'Pastors & Elders', description: 'Those entrusted with shepherding, teaching, counsel, and the spiritual oversight of ABF.' },
-  Deacons: { title: 'Deacons', description: 'Those entrusted with the practical care, coordination, and ministry welfare of the church.' },
-  'Interns & Staff': { title: 'Interns & Staff', description: 'Those learning, leading, teaching, and helping carry ABF’s ministries into daily life.' },
+  Pastors: { title: 'Pastors', subtitle: 'Elders · Overseers' },
+  Deacons: { title: 'Deacons', subtitle: 'Managers · Helpers' },
+  'Interns & Staff': { title: 'Interns & Staff', subtitle: 'Teachers · Volunteers' },
 }
 
 function MinistryIcon({ type }) {
@@ -251,7 +251,7 @@ function App() {
       <section className="people" id="people">
         <div className="section-heading light"><p className="section-label">Our people</p><h2>Leadership that<br/>lives alongside you.</h2></div>
         <nav className="staff-sequence" aria-label="Leadership groups">{Object.keys(staff).map((group, index) => <a href={`#staff-group-${index + 1}`} key={group}><span>{String(index + 1).padStart(2, '0')}</span><strong>{staffGroupDetails[group]?.title || group}</strong><small>{staff[group].length} people</small></a>)}</nav>
-        <div className="staff-groups">{Object.entries(staff).map(([group, people], index) => <section id={`staff-group-${index + 1}`} key={group}><header className="staff-group-header"><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{staffGroupDetails[group]?.title || group}</h3><p>{staffGroupDetails[group]?.description}</p></div><small>{people.length} people</small></header><div className="staff-grid">{people.map(person => <StaffCard person={person} key={person.name}/>)}</div></section>)}</div>
+        <div className="staff-groups">{Object.entries(staff).map(([group, people], index) => <section id={`staff-group-${index + 1}`} key={group}><header className="staff-group-header"><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{staffGroupDetails[group]?.title || group}</h3><p>{staffGroupDetails[group]?.subtitle}</p></div><small>{people.length} people</small></header><div className="staff-grid">{people.map(person => <StaffCard person={person} key={person.name}/>)}</div></section>)}</div>
       </section>
 
       <section className="connect" id="connect">
