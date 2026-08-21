@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { beliefs, ministries, staff, sundays } from './content.js'
 
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
 const Arrow = () => <span aria-hidden="true">↗</span>
 
 function MinistryIcon({ type }) {
@@ -51,7 +52,7 @@ function StatementVideo() {
     document.addEventListener('visibilitychange', begin)
     return () => { video.removeEventListener('canplay', begin); document.removeEventListener('visibilitychange', begin) }
   }, [])
-  return <video ref={videoRef} className="statement-video" autoPlay muted loop playsInline preload="auto" aria-hidden="true"><source src="/video/statement-loop-sdr.mp4" type="video/mp4"/></video>
+  return <video ref={videoRef} className="statement-video" autoPlay muted loop playsInline preload="auto" aria-hidden="true"><source src={asset('video/statement-loop-sdr.mp4')} type="video/mp4"/></video>
 }
 
 function UpcomingSunday() {
@@ -95,7 +96,7 @@ function CommunityResourcesSection() {
   return <section className={`community-resources resource-${activeId}`} aria-labelledby="resources-title">
     <header className="resources-heading"><div><p className="section-label">Created and shared by ABF</p><h2 id="resources-title">Community<br/>resources.</h2></div><p>Programs, gatherings, care, teaching, and creative work designed to help people grow and participate in the life of the church.</p></header>
     <nav className="resource-switch" aria-label="Choose a community resource">{communityResources.map(item => <button type="button" className={activeId === item.id ? 'is-active' : ''} aria-pressed={activeId === item.id} onClick={() => setActiveId(item.id)} key={item.id}>{item.label}</button>)}</nav>
-    <div className="resource-stage" key={activeId}><article className="resource-spotlight"><div className={`resource-visual${resource.image === 'brand' ? ' is-brand' : ''}`}>{resource.image === 'brand' ? <img src="/brand/abf-logo-light.png" alt="Aletheia Bible Fellowship"/> : <img src={`/resources/${resource.image}`} alt={`${resource.title} at ABF`}/>}</div><div className="resource-copy"><p className="section-label">{resource.eyebrow}</p><h3>{resource.title}</h3><p>{resource.text}</p><div className="resource-links">{resource.links?.map(([label, href]) => <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined} key={label}>{label} <Arrow /></a>) || <a href="mailto:connect@abfpdx.org">Ask ABF about this resource <Arrow /></a>}</div></div></article></div>
+    <div className="resource-stage" key={activeId}><article className="resource-spotlight"><div className={`resource-visual${resource.image === 'brand' ? ' is-brand' : ''}`}>{resource.image === 'brand' ? <img src={asset('brand/abf-logo-light.png')} alt="Aletheia Bible Fellowship"/> : <img src={asset(`resources/${resource.image}`)} alt={`${resource.title} at ABF`}/>}</div><div className="resource-copy"><p className="section-label">{resource.eyebrow}</p><h3>{resource.title}</h3><p>{resource.text}</p><div className="resource-links">{resource.links?.map(([label, href]) => <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined} key={label}>{label} <Arrow /></a>) || <a href="mailto:connect@abfpdx.org">Ask ABF about this resource <Arrow /></a>}</div></div></article></div>
   </section>
 }
 
@@ -104,7 +105,7 @@ function StaffCard({ person }) {
   return <div className={`staff-card${flipped ? ' is-flipped' : ''}`}>
     <div className="staff-card-inner">
       <button className="staff-face staff-front" type="button" aria-label={`Show biography and links for ${person.name}`} onClick={() => setFlipped(true)} tabIndex={flipped ? -1 : 0}>
-        <img src={`/staff/${person.image}.jpg`} alt={`Portrait of ${person.name}`} loading="lazy"/>
+        <img src={asset(`staff/${person.image}.jpg`)} alt={`Portrait of ${person.name}`} loading="lazy"/>
         <span className="staff-copy"><strong>{person.name}</strong><small>{person.role}</small>{person.meta && <em>{person.meta}</em>}<i>Click to read bio ↗</i></span>
       </button>
       <div className="staff-face staff-back" onClick={(event) => { if (!event.target.closest('a, button, iframe')) setFlipped(false) }}>
@@ -175,7 +176,7 @@ function App() {
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="site-header">
-      <a className="brand" href="#top" aria-label="Aletheia Bible Fellowship home"><img src="/brand/abf-logo-dark.png" alt=""/><small>Aletheia Bible Fellowship</small></a>
+      <a className="brand" href="#top" aria-label="Aletheia Bible Fellowship home"><img src={asset('brand/abf-logo-dark.png')} alt=""/><small>Aletheia Bible Fellowship</small></a>
       <button className="menu-button" aria-expanded={menuOpen} aria-controls="main-nav" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'Close' : 'Menu'}</button>
       <nav id="main-nav" className={menuOpen ? 'open' : ''} aria-label="Main navigation">
         <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
@@ -195,7 +196,7 @@ function App() {
           <div className="hero-actions"><a className="button" href="#connect">Connect with us</a><a className="text-link" href="#about">Discover ABF <span>↓</span></a></div>
         </div>
         <div className="hero-art" aria-label="Four paths representing ABF's ministries">
-          <video className="hero-video" autoPlay muted loop playsInline preload="metadata" poster="/video/abf-hero-poster.jpg" aria-label="Scenes from life at Aletheia Bible Fellowship"><source src="/video/abf-hero.mp4" type="video/mp4"/></video>
+          <video className="hero-video" autoPlay muted loop playsInline preload="metadata" poster={asset('video/abf-hero-poster.jpg')} aria-label="Scenes from life at Aletheia Bible Fellowship"><source src={asset('video/abf-hero.mp4')} type="video/mp4"/></video>
           <div className="hero-video-shade" aria-hidden="true"/>
           <p>Education<br/>Wellness<br/>Arts<br/>Community</p>
         </div>
@@ -222,7 +223,7 @@ function App() {
 
       <section className="sundays" aria-labelledby="sundays-title">
         <div className="section-heading"><p className="section-label">Our monthly rhythm</p><h2 id="sundays-title">What are Sundays like?</h2><p>ABF does not follow one standard service format. Each part of the month creates a different way to worship, learn, serve, and connect.</p></div>
-        <div className="sunday-grid">{sundays.map((item, index) => <article key={item.week} className={`sunday-${index + 1}`}><span>{item.week}</span><TiltMedia>{item.image ? <img src={`/sundays/${item.image}.jpg`} alt={`${item.title} at ABF`} loading="lazy"/> : <div className="sunday-mark"><img src="/brand/abf-logo-dark.png" alt=""/></div>}</TiltMedia><h3>{item.title}</h3><p>{item.text}</p>{item.note && <small>{item.note}</small>}</article>)}</div>
+        <div className="sunday-grid">{sundays.map((item, index) => <article key={item.week} className={`sunday-${index + 1}`}><span>{item.week}</span><TiltMedia>{item.image ? <img src={asset(`sundays/${item.image}.jpg`)} alt={`${item.title} at ABF`} loading="lazy"/> : <div className="sunday-mark"><img src={asset('brand/abf-logo-dark.png')} alt=""/></div>}</TiltMedia><h3>{item.title}</h3><p>{item.text}</p>{item.note && <small>{item.note}</small>}</article>)}</div>
         <UpcomingSunday />
       </section>
 
@@ -252,7 +253,7 @@ function App() {
       </section>
     </main>
 
-    <footer><div className="brand footer-brand"><img src="/brand/abf-logo-light.png" alt=""/><small>Aletheia Bible Fellowship<br/>Damascus, Oregon</small></div><div><a href="https://www.instagram.com/abfpdx/">Instagram</a><a href="https://www.facebook.com/abfpdx/">Facebook</a><a href="https://www.youtube.com/@abfpdx">YouTube</a></div><p>© {new Date().getFullYear()} Aletheia Bible Fellowship</p></footer>
+    <footer><div className="brand footer-brand"><img src={asset('brand/abf-logo-light.png')} alt=""/><small>Aletheia Bible Fellowship<br/>Damascus, Oregon</small></div><div><a href="https://www.instagram.com/abfpdx/">Instagram</a><a href="https://www.facebook.com/abfpdx/">Facebook</a><a href="https://www.youtube.com/@abfpdx">YouTube</a></div><p>© {new Date().getFullYear()} Aletheia Bible Fellowship</p></footer>
   </>
 }
 
